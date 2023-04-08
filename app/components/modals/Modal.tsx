@@ -60,7 +60,7 @@ const Modal: React.FC<ModalProps> = ({
          z-50 outline-none focus:outline-none bg-neutral-800/70
         ">
                 <div className="relative w-full
-             md:w-4/6
+             md:w-5/6
             lg:w-3/6
             xl:w-2/5
             my-6
@@ -107,6 +107,7 @@ const Modal: React.FC<ModalProps> = ({
 
                                     />
                                 </div>
+                                {footer}
                             </div>
                         </div>
 
