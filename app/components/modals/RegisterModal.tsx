@@ -6,14 +6,18 @@ import { toast } from 'react-hot-toast';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 import useRegisterModal from "@/app/hooks/useRegisterModel";
-import { useState } from "react";
+import useLoginModel from "@/app/hooks/useLoginModel";
+
+import { useCallback, useState } from "react";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
+import { signIn } from 'next-auth/react'
+
 
 const RegisterModal = () => {
-
+    const loginModal = useLoginModel();
     const registerModal = useRegisterModal();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -41,7 +45,10 @@ const RegisterModal = () => {
                 setIsLoading(false)
             });
     }
-
+    const togole = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen();
+    }, [loginModal, registerModal])
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <Heading title="Welcome to Airbnb"
@@ -64,10 +71,10 @@ const RegisterModal = () => {
         <div className="flex flex-col gap-4 mt-3">
             <hr />
             <Button outline label="Continue with Google"
-                icon={FcGoogle} onClick={() => { }} />
+                icon={FcGoogle} onClick={() => signIn('google')} />
 
             <Button outline label="Continue with Github"
-                icon={AiFillGithub} onClick={() => { }} />
+                icon={AiFillGithub} onClick={() => { signIn('github') }} />
 
             <div className="
                 text-neutral-500
@@ -75,7 +82,7 @@ const RegisterModal = () => {
                 ">
                 <div className="justify-center flex flex-row items-center gap-2">
                     <div>Already have an Account?</div>
-                    <div onClick={registerModal.onClose}
+                    <div onClick={togole}
                         className="text-neutral-800 cursor-pointer hover:underline">
                         Log in
                     </div>

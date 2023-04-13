@@ -1,12 +1,12 @@
 'use client'
-import {signIn} from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import axios from "axios"
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-hot-toast';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
@@ -16,7 +16,7 @@ import useRegisterModal from "@/app/hooks/useRegisterModel";
 import { useRouter } from 'next/navigation';
 
 const LoginModal = () => {
-  const router = useRouter();
+    const router = useRouter();
     const registerModal = useRegisterModal();
     const loginModel = useLoginModel();
     const [isLoading, setIsLoading] = useState(false);
@@ -33,22 +33,26 @@ const LoginModal = () => {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
         debugger;
-        signIn('credentials',{
-             ...data,
-             redirect:false
-        }).then(callback=>{
+        signIn('credentials', {
+            ...data,
+            redirect: false
+        }).then(callback => {
             setIsLoading(false)
-            if(callback?.ok){
+            if (callback?.ok) {
                 toast.success('Logged in');
-                 router.refresh();
-                 loginModel.onClose();
+                router.refresh();
+                loginModel.onClose();
             }
-            if(callback?.error){
+            if (callback?.error) {
                 toast.error(callback.error);
             }
         })
-       
+
     }
+    const togole = useCallback(() => {
+        loginModel.onClose();
+        registerModal.onOpen();
+    }, [loginModel, registerModal])
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -70,20 +74,21 @@ const LoginModal = () => {
         <div className="flex flex-col gap-4 mt-3">
             <hr />
             <Button outline label="Continue with Google"
-                icon={FcGoogle} onClick={() => { }} />
+                icon={FcGoogle} onClick={() => signIn('google')} />
 
             <Button outline label="Continue with Github"
-                icon={AiFillGithub} onClick={() => { }} />
+                icon={AiFillGithub} onClick={() => signIn('github')} />
 
             <div className="
                 text-neutral-500
                 text-center mt-4 font-light
                 ">
                 <div className="justify-center flex flex-row items-center gap-2">
-                    <div>Already have an Account?</div>
-                    <div onClick={registerModal.onClose}
+                    <div>First time using Airbnb?</div>
+
+                    <div onClick={togole}
                         className="text-neutral-800 cursor-pointer hover:underline">
-                        Log in
+                        Create an account
                     </div>
                 </div>
 
