@@ -6,17 +6,16 @@ export type SafeUser = Omit<User, "createdAt" | 'updatedAt' | 'emailVerified'>
         emailVerified: string | null;
     }
 
-export type SafeListing = Omit<Listing,
-    "createdAt"> & {
+export type SafeListing = Omit<Listing,"createdAt"> & {
         createdAt: string;
     }
 export type SafeReservation = Omit<
     Reservation,
-    "createdAt" | "startDate" | 'endDate' | "Listing"> &
+    "createdAt" | "startDate" | 'endDate' | "listing"> &
 {
     createdAt: string;
     startDate: string;
     endDate: string;
-    listing: SafeListing
+    Listing: SafeListing
 
 }

@@ -19,7 +19,7 @@ export default async function getReservations(params: IParams) {
             query.userId = userId;
         }
         if (authorId) {
-            query.listing = {
+            query.Listing = {
                 userId: authorId
             }
         }
@@ -39,10 +39,10 @@ export default async function getReservations(params: IParams) {
             createdAt: reserv.createdAt.toISOString(),
             startDate: reserv.startDate.toISOString(),
             endDate: reserv.endDate.toISOString(),
-            listing: {
+            Listing: {
                 ...reserv.Listing,
                 createdAt: reserv.Listing?.createdAt.toISOString(),
-                
+
             }
         }))
         return safeReservation;

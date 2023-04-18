@@ -11,14 +11,15 @@ interface InputProps {
     disabled?: boolean;
     formatPrice?: boolean;
     required?: boolean;
-    register: UseFormRegister<FieldValues>,
-    errors: FieldErrors
+    register: UseFormRegister<FieldValues>;
+    errors: FieldErrors;
+    placeHolder?:string;
 }
 
 const Input: React.FC<InputProps> = ({
     id, label, type = "text", disabled,
     formatPrice, register,
-    required, errors
+    required, errors,placeHolder
 }) => {
     return (
         <div className="w-full relative">
@@ -26,7 +27,7 @@ const Input: React.FC<InputProps> = ({
 
             <input id={id} disabled={disabled}
                 {...register(id, { required })}
-                placeholder=''
+                placeholder={placeHolder}
                 type={type}
                 className={`peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
               ${formatPrice ? 'pl-9' : 'pl-4'} 
