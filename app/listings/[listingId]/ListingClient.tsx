@@ -9,7 +9,6 @@ import ListingInfo from "@/app/components/listings/ListingInfo";
 import { categoriesData } from "@/app/components/navbar/Categories";
 import useLoginModel from "@/app/hooks/useLoginModel";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
-import { Reservation } from "@prisma/client";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import axios from "axios";
 import { toast } from "react-hot-toast";

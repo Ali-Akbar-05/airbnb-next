@@ -1,4 +1,3 @@
-
 import getCurrentUser from "../actions/getCurrent";
 import getReservations from "../actions/getReservations";
 import ClientOnly from "../components/ClientOnly";
@@ -19,6 +18,7 @@ const ReservationsPage = async () => {
     const reservations = await getReservations({
         authorId: currentUser.id
     });
+    console.log(reservations);
     if (reservations.length == 0) {
         return (
             <ClientOnly>
@@ -27,6 +27,7 @@ const ReservationsPage = async () => {
             </ClientOnly>
         )
     }
+
 
     return (
         <ClientOnly>

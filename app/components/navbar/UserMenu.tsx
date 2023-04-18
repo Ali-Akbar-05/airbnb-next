@@ -54,7 +54,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <div className='absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden top-12 right-0 text-sm'>
                     <div className='flex flex-col cursor-pointer'>
                         {currentUser ? (<>
-                            <MenuItem label='My trimps' onClick={() =>router.push('/trips')} />
+                            <MenuItem label='My trips' onClick={() =>router.push('/trips')} />
                             <MenuItem label='My favorites' onClick={() =>router.push('/favorites')} />
                             <MenuItem label='My reservation' onClick={() => router.push("/reservations")} />
                             <MenuItem label='My properties' onClick={() =>router.push("/properties")} />
