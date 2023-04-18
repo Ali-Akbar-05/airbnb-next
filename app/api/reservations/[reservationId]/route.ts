@@ -21,7 +21,7 @@ export async function DELETE(request: Request, { params }: { params: IParams }) 
             id: reservationId,
             OR: [
                 { userId: currentUser.id },
-                { Listing: { userId: currentUser.id } }
+                { listing: { userId: currentUser.id } }
             ]
         }
     });
