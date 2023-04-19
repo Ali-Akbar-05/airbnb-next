@@ -1,7 +1,7 @@
 import prisma from '@/app/libs/prismadb';
 
 export interface IListingsParams {
-    userId?: string;
+     userId?: string;
     guestCount?: number;
     roomCount?: number;
     bathroomCount?: number;
@@ -11,10 +11,10 @@ export interface IListingsParams {
     category?: string;
 }
 
-export default async function getListing(params: IListingsParams) {
+export default async function getListing(searchParams: IListingsParams) {
     try {
         const {
-            userId,
+             userId,
             roomCount,
             guestCount,
             bathroomCount,
@@ -22,7 +22,7 @@ export default async function getListing(params: IListingsParams) {
             startDate,
             endDate,
             category,
-        } = params;
+        } = searchParams;
 
         let query: any = {};
 
@@ -33,6 +33,7 @@ console.log(`get listing action _user Id : ${userId}`)
         }else{
             console.log(`Not found userid : ${userId}`)
         }
+        
         if (category) {
             query.category = category;
         }
