@@ -7,19 +7,16 @@ import ListingCard from "./components/listings/ListingCard";
 
 
 interface HomeParams {
-  params: IListingsParams;
+  searchParams : IListingsParams;
 
 }
 
-const Home = async ({ params }: HomeParams) => {
+const Home = async ({ searchParams  }: HomeParams) => {
 
-  if (params) {
-    console.log('No Parms');
-    console.log(params);
-  }
+  const listings = await getListing(searchParams);
   const currentUser = await getCurrentUser();
 
-  const listings = await getListing(params);
+
 
   if (listings.length === 0) {
     return (
@@ -59,3 +56,4 @@ const Home = async ({ params }: HomeParams) => {
 }
 
 export default Home;
+export const dynamic='force-dynamic';
