@@ -15,22 +15,29 @@ export default async function getListing(params: IListingsParams) {
     try {
         const {
             userId,
-            roomCount, 
-            guestCount, 
-            bathroomCount, 
+            roomCount,
+            guestCount,
+            bathroomCount,
             locationValue,
             startDate,
             endDate,
             category,
-          } = params;
+        } = params;
 
         let query: any = {};
 
+console.log(`get listing action _user Id : ${userId}`)
+
         if (userId) {
             query.userId = userId;
+        }else{
+            console.log(`Not found userid : ${userId}`)
         }
         if (category) {
             query.category = category;
+        }
+        else{
+            console.log(`Not found category : ${category}`)
         }
         if (roomCount) {
             query.roomCount = {

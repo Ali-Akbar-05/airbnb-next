@@ -15,7 +15,7 @@ export async function POST(
             email, name, hashedPassword
         }
     });
-    console.log(user);
+ 
     return NextResponse.json(user);
 }
 

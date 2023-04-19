@@ -7,13 +7,20 @@ import ListingCard from "./components/listings/ListingCard";
 
 
 interface HomeParams {
-  params:  IListingsParams
-     
+  params: IListingsParams;
+
 }
 
 const Home = async ({ params }: HomeParams) => {
-  const listings = await getListing(params);
+
+  if (params) {
+    console.log('No Parms');
+    console.log(params);
+  }
   const currentUser = await getCurrentUser();
+
+  const listings = await getListing(params);
+
   if (listings.length === 0) {
     return (
       <ClientOnly>
@@ -34,7 +41,7 @@ const Home = async ({ params }: HomeParams) => {
       gap-8">
 
           {
-            listings.map((listing:any) => {
+            listings.map((listing: any) => {
               return (
                 <ListingCard
                   currentUser={currentUser}

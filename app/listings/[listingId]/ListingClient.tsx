@@ -56,7 +56,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             return loginModal.onOpen();
         }
         setIsLoading(true);
-        console.log('First');
+ 
         axios.post('/api/reservations', {
             totalPrice,
             startDate: dateRange.startDate,
@@ -74,7 +74,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             setIsLoading(false)
         });
         setIsLoading(false);
-        console.log('Last');
+ 
     }, [totalPrice, dateRange, listing?.id, router, currentUser, loginModal])
 
     useEffect(() => {
